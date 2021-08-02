@@ -1,48 +1,25 @@
 package main
 
 import (
-	"golang3/controllers"
-	"golang3/database"
-	"golang3/entity"
-	"log"
-	"net/http"
+	"fmt"
+	config "golang3/config"
+	models "golang3/models"
+	"golang3/routes"
 
-	"github.com/gorilla/mux"
-	_ "github.com/jinzhu/gorm/dialects/mysql" //Required for MySQL dialect
+	"github.com/jinzhu/gorm"
 )
 
+var err error
+
 func main() {
-	initDB()
-	log.Println("Starting the HTTP server on http://localhost:8080")
-
-	router := mux.NewRouter().StrictSlash(true)
-	initaliseHandlers(router)
-	log.Fatal(http.ListenAndServe(":8080", router))
-}
-
-// Router API
-func initaliseHandlers(router *mux.Router) {
-	// Router Article
-	router.HandleFunc("/api/v1/article/add", controllers.CreateArticle).Methods("POST")        // Create
-	router.HandleFunc("/api/v1/articleList", controllers.GetAllArticle).Methods("POST")        // Read
-	router.HandleFunc("/api/v1/articleList/{id}", controllers.GetArticleByID).Methods("GET")   // Read ByID
-	router.HandleFunc("/api/v1/article/{id}", controllers.UpdateArticleByID).Methods("PUT")    // Update
-	router.HandleFunc("/api/v1/article/{id}", controllers.DeleteArticleByID).Methods("DELETE") // Delete
-}
-
-func initDB() {
-	config :=
-		database.Config{
-			ServerName: "localhost:3306",
-			User:       "root",
-			Password:   "12345678",
-			DB:         "db_golang3",
-		}
-
-	connectionString := database.GetConnectionString(config)
-	err := database.Connect(connectionString)
+	config.DB, err = gorm.Open("mysql", config.DbURL(config.BuildDBConfig()))
 	if err != nil {
-		panic(err.Error())
+		fmt.Println("Status:", err)
 	}
-	database.Migrate(&entity.Article{})
+	defer config.DB.Close()
+	//	Config.DB.DropTableIfExists(&Model.Article{}, &Model.Account{})
+	config.DB.AutoMigrate(&models.Article{})
+	r := routes.SetUpRouter()
+
+	r.Run()
 }

@@ -1,14 +1,14 @@
-package middleware
+package utils
 
 import (
-	"golang3/entity"
+	"golang3/models"
 	"strconv"
 
 	"github.com/gin-gonic/gin"
 )
 
 // GeneratePaginationFromRequest ..
-func GeneratePaginationFromRequest(c *gin.Context) entity.Pagination {
+func GeneratePaginationFromRequest(c *gin.Context) models.Pagination {
 	// Initializing default
 	//	var mode string
 	limit := 8
@@ -25,7 +25,7 @@ func GeneratePaginationFromRequest(c *gin.Context) entity.Pagination {
 			break
 		}
 	}
-	return entity.Pagination{
+	return models.Pagination{
 		Limit: limit,
 		Page:  page,
 	}

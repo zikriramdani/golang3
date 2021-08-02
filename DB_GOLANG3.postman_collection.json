@@ -92,10 +92,10 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"id\": 3,\n    \"title\": \"Nama Title 3\",\n    \"content\": \"Isi Content 3\",\n    \"category\": \"go\",\n    \"status\": \"Publish\"\n}"
+					"raw": "{\n    \"title\": \"Nama Title 34\",\n    \"content\": \"Isi Content 34\",\n    \"category\": \"go\",\n    \"status\": \"Publish\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8080/api/v1/article/1",
+					"raw": "http://localhost:8080/api/v1/article/34",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -105,7 +105,7 @@
 						"api",
 						"v1",
 						"article",
-						"1"
+						"34"
 					]
 				}
 			},

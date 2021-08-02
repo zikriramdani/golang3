@@ -12,7 +12,7 @@ import (
 )
 
 const (
-	pageSize = 8
+	limits = 8
 )
 
 // Pagination
@@ -39,11 +39,14 @@ func paginate(x []int, skip int, size int) []int {
 
 // GetAllArticle get all article data
 func GetAllArticle(w http.ResponseWriter, r *http.Request) {
+	requestBody, _ := ioutil.ReadAll(r.Body)
 	var article []entity.Article
-	database.Connector.Limit(pageSize + 1).Find(&article)
-	if len(article) == pageSize+1 {
+	json.Unmarshal(requestBody, &article)
+
+	database.Connector.Limit(limits + 1).Find(&article)
+	if len(article) == limits+1 {
 		// article.NextPageID = article[len(article)-1].ID
-		article = article[:pageSize]
+		article = article[:limits]
 	}
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)

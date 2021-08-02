@@ -23,12 +23,11 @@ func main() {
 // Router API
 func initaliseHandlers(router *mux.Router) {
 	// Router Article
-	router.HandleFunc("/api/v1/article/add", controllers.CreateArticle).Methods("POST")
-	router.HandleFunc("/api/v1/articleList", controllers.GetAllArticle).Methods("GET")
-	router.HandleFunc("/api/v1/articleList/{id}", controllers.GetArticleByID).Methods("GET")
-	router.HandleFunc("/api/v1/articleListPagination", controllers.GetAllArticle).Methods("GET")
-	router.HandleFunc("/api/v1/article/{id}", controllers.UpdateArticleByID).Methods("PUT")
-	router.HandleFunc("/api/v1/article/{id}", controllers.DeleteArticleByID).Methods("DELETE")
+	router.HandleFunc("/api/v1/article/add", controllers.CreateArticle).Methods("POST")        // Create
+	router.HandleFunc("/api/v1/articleList", controllers.GetAllArticle).Methods("POST")        // Read
+	router.HandleFunc("/api/v1/articleList/{id}", controllers.GetArticleByID).Methods("GET")   // Read ByID
+	router.HandleFunc("/api/v1/article/{id}", controllers.UpdateArticleByID).Methods("PUT")    // Update
+	router.HandleFunc("/api/v1/article/{id}", controllers.DeleteArticleByID).Methods("DELETE") // Delete
 }
 
 func initDB() {

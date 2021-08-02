@@ -33,11 +33,8 @@
 		},
 		{
 			"name": "http://localhost:8080/api/v1/articleList",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
 			"request": {
-				"method": "GET",
+				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
@@ -109,41 +106,6 @@
 						"v1",
 						"article",
 						"1"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "http://localhost:8080/api/v1/articleListPagination",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "urlencoded",
-					"urlencoded": []
-				},
-				"url": {
-					"raw": "http://localhost:8080/api/v1/articleList?limits=3&page=1",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"api",
-						"v1",
-						"articleList"
-					],
-					"query": [
-						{
-							"key": "limits",
-							"value": "3"
-						},
-						{
-							"key": "page",
-							"value": "1"
-						}
 					]
 				}
 			},

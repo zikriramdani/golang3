@@ -15,7 +15,7 @@ Run `go run main.go` for a dev server. Navigate to `http://localhost:8080/`. The
 - Simpan Project di /htdocs (kalau pake xampp)
 - import database (db_golang3.sql / automigrate(Buatlah database dahulu dengan nama db_golang3.sql)
 - buka folder project, copykan .env-example, menjadi .env
-- isi DB_DATABASE, DB_USERNAME, DB_PASSWORD, sesuaikan dengan settingan database kamu
+- isi DB_DATABASE, DB_USERNAME, DB_PASSWORD, sesuaikan dengan settingan database kamu pada main.go
 - di dalam directory project buka terminal, ketikan "go run main.go"
 - buka browser, ketikan url "localhost:8080"
 

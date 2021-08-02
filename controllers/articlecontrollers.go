@@ -11,6 +11,10 @@ import (
 	"github.com/gorilla/mux"
 )
 
+const (
+	pageSize = 10
+)
+
 // GetAllArticle get all article data
 func GetAllArticle(w http.ResponseWriter, r *http.Request) {
 	var article []entity.Article
@@ -29,6 +33,29 @@ func GetArticleByID(w http.ResponseWriter, r *http.Request) {
 	database.Connector.First(&article, key)
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(article)
+}
+
+// GetArticles returns all articles from the database
+func GetArticlePagination(w http.ResponseWriter, r *http.Request) {
+	// articles := &types.ArticleList{}
+	// c.Client.Where("id >= ?", pageID).Order("id").Limit(pageSize + 1).Find(&articles.Items)
+	// if len(articles.Items) == pageSize+1 {
+	// 	articles.NextPageID = articles.Items[len(articles.Items)-1].ID
+	// 	articles.Items = articles.Items[:pageSize]
+	// }
+	// return articles
+
+	vars := mux.Vars(r)
+	key := vars["id"]
+
+	var article entity.Article
+	id, _ := strconv.ParseInt(key, 10, 64)
+	database.Connector.Where("id = ?", id).Limit(pageSize + 1).Find(&article)
+	// if len(article) == pageSize+1 {
+	// 	articles.NextPageID = article[len(article)-1].ID
+	// 	article = article[:pageSize]
+	// }
+	// return article
 }
 
 // CreateArticle creates article

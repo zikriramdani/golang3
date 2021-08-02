@@ -6,7 +6,7 @@
 	},
 	"item": [
 		{
-			"name": "http://localhost:8080/api/v1/product/add",
+			"name": "http://localhost:8080/api/v1/article/add",
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -32,7 +32,7 @@
 			"response": []
 		},
 		{
-			"name": "http://localhost:8080/api/v1/product/add Copy",
+			"name": "http://localhost:8080/api/v1/articleList",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -60,7 +60,7 @@
 			"response": []
 		},
 		{
-			"name": "http://localhost:8080/api/v1/product/add Copy 2",
+			"name": "http://localhost:8080/api/v1/articleList/{id}",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -89,7 +89,7 @@
 			"response": []
 		},
 		{
-			"name": "http://localhost:8080/api/v1/product/4",
+			"name": "http://localhost:8080/api/v1/article/{id}",
 			"request": {
 				"method": "PUT",
 				"header": [],
@@ -115,7 +115,7 @@
 			"response": []
 		},
 		{
-			"name": "http://localhost:8080/api/v1/productList",
+			"name": "http://localhost:8080/api/v1/articleListPagination",
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -150,7 +150,7 @@
 			"response": []
 		},
 		{
-			"name": "http://localhost:8080/api/v1/product/4",
+			"name": "http://localhost:8080/api/v1/article/{id}",
 			"request": {
 				"method": "DELETE",
 				"header": [],

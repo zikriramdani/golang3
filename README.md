@@ -22,7 +22,7 @@ Run `go run main.go` for a dev server. Navigate to `http://localhost:8080/`. The
 # Url API
 - localhost:8080/api/v1/article/add ===> createArticle,
 - localhost:8080/api/v1/articleList ===> readArticle,
-- localhost:8080/api/v1/articleList/:id ===> readArticle Id,
-- localhost:8080/api/v1/article/:id ===> updateArticle,
-- localhost:8080/api/v1/article/:id ===> deleteArticle
+- localhost:8080/api/v1/articleList/:id ===> readArticle ByID,
+- localhost:8080/api/v1/article/:id ===> updateArticle ByID,
+- localhost:8080/api/v1/article/:id ===> deleteArticle ByID
 - localhost:8080/api/v1/articleList?limits=2&page=1 ===> filterLimitArticle;

@@ -1,7 +1,7 @@
 package database
 
 import (
-	"golang1/models"
+	"golang1/entity"
 	"log"
 
 	"github.com/jinzhu/gorm"
@@ -22,7 +22,7 @@ func Connect(connectionString string) error {
 }
 
 // Migrate create/updates database table
-func Migrate(table *models.Article) {
+func Migrate(table *entity.Article) {
 	Connector.AutoMigrate(&table)
 	log.Println("Table migrated")
 }

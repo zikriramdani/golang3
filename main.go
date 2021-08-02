@@ -3,7 +3,7 @@ package main
 import (
 	"golang1/controllers"
 	"golang1/database"
-	"golang1/models"
+	"golang1/entity"
 	"log"
 	"net/http"
 
@@ -44,5 +44,5 @@ func initDB() {
 	if err != nil {
 		panic(err.Error())
 	}
-	database.Migrate(&models.Article{})
+	database.Migrate(&entity.Article{})
 }

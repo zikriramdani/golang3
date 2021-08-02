@@ -1,4 +1,4 @@
-package models
+package entity
 
 // Article object for REST(CRUD)
 type Article struct {

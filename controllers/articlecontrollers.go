@@ -3,7 +3,7 @@ package controllers
 import (
 	"encoding/json"
 	"golang1/database"
-	"golang1/models"
+	"golang1/entity"
 	"io/ioutil"
 	"net/http"
 	"strconv"
@@ -13,7 +13,7 @@ import (
 
 // GetAllArticle get all article data
 func GetAllArticle(w http.ResponseWriter, r *http.Request) {
-	var article []models.Article
+	var article []entity.Article
 	database.Connector.Find(&article)
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
@@ -25,7 +25,7 @@ func GetArticleByID(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	key := vars["id"]
 
-	var article models.Article
+	var article entity.Article
 	database.Connector.First(&article, key)
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(article)
@@ -34,7 +34,7 @@ func GetArticleByID(w http.ResponseWriter, r *http.Request) {
 // CreateArticle creates article
 func CreateArticle(w http.ResponseWriter, r *http.Request) {
 	requestBody, _ := ioutil.ReadAll(r.Body)
-	var article models.Article
+	var article entity.Article
 	json.Unmarshal(requestBody, &article)
 
 	database.Connector.Create(article)
@@ -46,7 +46,7 @@ func CreateArticle(w http.ResponseWriter, r *http.Request) {
 // UpdateArticleByID updates article with respective ID
 func UpdateArticleByID(w http.ResponseWriter, r *http.Request) {
 	requestBody, _ := ioutil.ReadAll(r.Body)
-	var article models.Article
+	var article entity.Article
 	json.Unmarshal(requestBody, &article)
 	database.Connector.Save(&article)
 
@@ -60,7 +60,7 @@ func DeleteArticleByID(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	key := vars["id"]
 
-	var article models.Article
+	var article entity.Article
 	id, _ := strconv.ParseInt(key, 10, 64)
 	database.Connector.Where("id = ?", id).Delete(&article)
 	w.WriteHeader(http.StatusNoContent)

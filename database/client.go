@@ -1,16 +1,16 @@
 package database
 
 import (
-	"golang1/entity"
+	"golang1/models"
 	"log"
 
 	"github.com/jinzhu/gorm"
 )
 
-//Connector variable used for CRUD operation's
+// Connector variable used for CRUD operation's
 var Connector *gorm.DB
 
-//Connect creates MySQL connection
+// Connect creates MySQL connection
 func Connect(connectionString string) error {
 	var err error
 	Connector, err = gorm.Open("mysql", connectionString)
@@ -21,8 +21,8 @@ func Connect(connectionString string) error {
 	return nil
 }
 
-//Migrate create/updates database table
-func Migrate(table *entity.Person) {
+// Migrate create/updates database table
+func Migrate(table *models.Article) {
 	Connector.AutoMigrate(&table)
 	log.Println("Table migrated")
 }

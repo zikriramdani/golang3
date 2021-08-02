@@ -3,7 +3,7 @@ package main
 import (
 	"golang1/controllers"
 	"golang1/database"
-	"golang1/entity"
+	"golang1/models"
 	"log"
 	"net/http"
 
@@ -13,19 +13,21 @@ import (
 
 func main() {
 	initDB()
-	log.Println("Starting the HTTP server on port 8090")
+	log.Println("Starting the HTTP server on http://localhost:8080")
 
 	router := mux.NewRouter().StrictSlash(true)
 	initaliseHandlers(router)
-	log.Fatal(http.ListenAndServe(":8090", router))
+	log.Fatal(http.ListenAndServe(":8080", router))
 }
 
+// Router API
 func initaliseHandlers(router *mux.Router) {
-	router.HandleFunc("/create", controllers.CreatePerson).Methods("POST")
-	router.HandleFunc("/get", controllers.GetAllPerson).Methods("GET")
-	router.HandleFunc("/get/{id}", controllers.GetPersonByID).Methods("GET")
-	router.HandleFunc("/update/{id}", controllers.UpdatePersonByID).Methods("PUT")
-	router.HandleFunc("/delete/{id}", controllers.DeletPersonByID).Methods("DELETE")
+	// Router Article
+	router.HandleFunc("/api/v1/article/add", controllers.CreateArticle).Methods("POST")
+	router.HandleFunc("/api/v1/articleList", controllers.GetAllArticle).Methods("GET")
+	router.HandleFunc("/api/v1/article/{id}", controllers.GetArticleByID).Methods("GET")
+	router.HandleFunc("/api/v1/article/{id}", controllers.UpdateArticleByID).Methods("PUT")
+	router.HandleFunc("/api/v1/article/{id}", controllers.DeleteArticleByID).Methods("DELETE")
 }
 
 func initDB() {
@@ -34,7 +36,7 @@ func initDB() {
 			ServerName: "localhost:3306",
 			User:       "root",
 			Password:   "12345678",
-			DB:         "db_golang1",
+			DB:         "db_golang3",
 		}
 
 	connectionString := database.GetConnectionString(config)
@@ -42,5 +44,5 @@ func initDB() {
 	if err != nil {
 		panic(err.Error())
 	}
-	database.Migrate(&entity.Person{})
+	database.Migrate(&models.Article{})
 }

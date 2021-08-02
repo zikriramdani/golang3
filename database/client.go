@@ -1,7 +1,7 @@
 package database
 
 import (
-	"golang1/entity"
+	"golang3/entity"
 	"log"
 
 	"github.com/jinzhu/gorm"

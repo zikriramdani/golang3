@@ -2,8 +2,8 @@ package controllers
 
 import (
 	"encoding/json"
-	"golang1/database"
-	"golang1/entity"
+	"golang3/database"
+	"golang3/entity"
 	"io/ioutil"
 	"net/http"
 	"strconv"
@@ -12,42 +12,49 @@ import (
 )
 
 const (
-	limits = 8
+	limit = 8
+	page  = 1
 )
 
-// Pagination
-func paginate(x []int, skip int, size int) []int {
-	limit := func() int {
-		if skip+size > len(x) {
-			return len(x)
-		} else {
-			return skip + size
-		}
-
-	}
-
-	start := func() int {
-		if skip > len(x) {
-			return len(x)
-		} else {
-			return skip
-		}
-
-	}
-	return x[start():limit()]
+func Pagination(article *entity.Article, pagination *entity.Pagination) {
+	var articles []entity.Article
+	offset := (pagination.Page - 1) * pagination.Limit
+	database.Connector.Where(article).Limit(pagination.Limit).Offset(offset).Find(&articles)
 }
 
 // GetAllArticle get all article data
 func GetAllArticle(w http.ResponseWriter, r *http.Request) {
 	var article []entity.Article
-	database.Connector.Limit(limits + 1).Find(&article)
-	if len(article) == limits+1 {
-		// article.NextPageID = article[len(article)-1].ID
-		article = article[:limits]
-	}
+
+	database.Connector.Where(article).Limit(limit).Offset(page).Find(&article)
+
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(article)
+
+	// RequestURI: https://example.com/?limit=10&page=1
+	// p := pagination.ParseQuery(r.URL.RequestURI())
+	// fetcher := newFruitFetcher()
+
+	// totalCount, totalPages, res, err := pagination.Fetch(fetcher, &pagination.Setting{
+	// 	Limit: p.Limit,
+	// 	Page:  p.Page,
+	// })
+
+	// if err != nil {
+	// 	w.Header().Set("Content-Type", "text/html; charset=utf8")
+	// 	w.WriteHeader(400)
+	// 	fmt.Fprintf(w, "something wrong: %v", err)
+	// 	return
+	// }
+
+	// w.Header().Set("X-Total-Count", strconv.Itoa(totalCount))
+	// w.Header().Set("X-Total-Pages", strconv.Itoa(totalPages))
+	// w.Header().Set("Access-Control-Expose-Headers", "X-Total-Count,X-Total-Pages")
+	// w.Header().Set("Content-Type", "application/json; charset=utf-8")
+	// w.WriteHeader(200)
+	// resJSON, _ := json.Marshal(res)
+	// w.Write(resJSON)
 }
 
 // GetArticleByID returns article with specific ID

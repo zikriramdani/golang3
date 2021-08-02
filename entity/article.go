@@ -13,6 +13,11 @@ type Article struct {
 	Status   string `json:"status" validate:"required"`
 }
 
+type Pagination struct {
+	Limit int `json:"limit"`
+	Page  int `json:"page"`
+}
+
 type CustomValidator struct {
 	validator *validator.Validate
 }

@@ -1,9 +1,9 @@
 package main
 
 import (
-	"golang1/controllers"
-	"golang1/database"
-	"golang1/entity"
+	"golang3/controllers"
+	"golang3/database"
+	"golang3/entity"
 	"log"
 	"net/http"
 

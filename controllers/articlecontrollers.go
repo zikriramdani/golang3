@@ -39,10 +39,7 @@ func paginate(x []int, skip int, size int) []int {
 
 // GetAllArticle get all article data
 func GetAllArticle(w http.ResponseWriter, r *http.Request) {
-	requestBody, _ := ioutil.ReadAll(r.Body)
 	var article []entity.Article
-	json.Unmarshal(requestBody, &article)
-
 	database.Connector.Limit(limits + 1).Find(&article)
 	if len(article) == limits+1 {
 		// article.NextPageID = article[len(article)-1].ID

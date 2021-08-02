@@ -25,7 +25,7 @@ func initaliseHandlers(router *mux.Router) {
 	// Router Article
 	router.HandleFunc("/api/v1/article/add", controllers.CreateArticle).Methods("POST")
 	router.HandleFunc("/api/v1/articleList", controllers.GetAllArticle).Methods("GET")
-	router.HandleFunc("/api/v1/article/{id}", controllers.GetArticleByID).Methods("GET")
+	router.HandleFunc("/api/v1/articleList/{id}", controllers.GetArticleByID).Methods("GET")
 	router.HandleFunc("/api/v1/article/{id}", controllers.UpdateArticleByID).Methods("PUT")
 	router.HandleFunc("/api/v1/article/{id}", controllers.DeleteArticleByID).Methods("DELETE")
 }

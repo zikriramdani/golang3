@@ -10,11 +10,12 @@ func SetUpRouter() *gin.Engine {
 
 	r := gin.Default()
 
-	r.POST("api/v1/article/add", controllers.CreateArticles)
-	r.GET("api/v1/articleList", controllers.GetAllArticles)
-	r.GET("api/v1/articleList/:id", controllers.GetArticlesByID)
-	r.PUT("api/v1/article/:id", controllers.UpdateArticlesByID)
-	r.DELETE("api/v1/article/:id", controllers.DeleteArticlesByID)
+	// Router Articles
+	r.POST("api/v1/article/add", controllers.CreateArticles)       // Create
+	r.GET("api/v1/articleList", controllers.GetAllArticles)        // Read
+	r.GET("api/v1/articleList/:id", controllers.GetArticlesByID)   // Read ByID
+	r.PUT("api/v1/article/:id", controllers.UpdateArticlesByID)    // Update ByID
+	r.DELETE("api/v1/article/:id", controllers.DeleteArticlesByID) // Delete ByID
 
 	return r
 }

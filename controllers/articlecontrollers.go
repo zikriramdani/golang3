@@ -42,6 +42,7 @@ func GetAllArticle(w http.ResponseWriter, r *http.Request) {
 	var article []entity.Article
 	database.Connector.Limit(pageSize + 1).Find(&article)
 	if len(article) == pageSize+1 {
+		// article.NextPageID = article[len(article)-1].ID
 		article = article[:pageSize]
 	}
 	w.Header().Set("Content-Type", "application/json")

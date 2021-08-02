@@ -12,7 +12,7 @@ import (
 )
 
 const (
-	pageSize = 10
+	pageSize = 8
 )
 
 // Pagination

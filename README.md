@@ -25,4 +25,4 @@ Run `go run main.go` for a dev server. Navigate to `http://localhost:8080/`. The
 - localhost:8080/api/v1/articleList/:id ===> readArticle ByID,
 - localhost:8080/api/v1/article/:id ===> updateArticle ByID,
 - localhost:8080/api/v1/article/:id ===> deleteArticle ByID
-- localhost:8080/api/v1/articleList?limits=2&page=1 ===> filterLimitArticle;
+- localhost:8080/api/v1/articleList?limit=2&page=1 ===> filterLimitArticle;

@@ -1,4 +1,4 @@
-# Aplikasi Sederhana Node Js Post Article
+# Aplikasi Sederhana Golang Post Article
 
 This project was generated with [`Golang`] version go1.16.6 darwin/amd64.
 

@@ -1,4 +1,4 @@
-# CRUD By Golang
+# CRUD Article By Golang
 
 This project was generated with [`Golang`] version go1.16.6 darwin/amd64.
 

@@ -2,8 +2,11 @@ package Config
 
 import (
 	"fmt"
-
+	"os"
+	"log"
+	"strconv"
 	"github.com/jinzhu/gorm"
+	"github.com/joho/godotenv"
 )
 
 var DB *gorm.DB
@@ -17,13 +20,30 @@ type DBConfig struct {
 	Password string
 }
 
+// use godot package to load/read the .env file and
+// return the value of the key
+func goDotEnvVariable(key string) string {
+
+	// load .env file
+	err := godotenv.Load(".env")
+  
+	if err != nil {
+	  log.Fatalf("Error loading .env file")
+	}
+  
+	return os.Getenv(key)
+  }
+  
+
 func BuildDBConfig() *DBConfig {
+	dbPort, _ := strconv.Atoi(goDotEnvVariable("MYSQL_PORT"))
+
 	dbConfig := DBConfig{
-		Host:     "localhost",
-		Port:     3306,
-		User:     "root",
-		Password: "12345678",
-		DBName:   "db_golang3",
+		Host:     goDotEnvVariable("MYSQL_HOST"),
+		Port:     dbPort,
+		User:     goDotEnvVariable("MYSQL_USER"),
+		Password: goDotEnvVariable("MYSQL_PASS"),
+		DBName:   goDotEnvVariable("MYSQL_NAME"),
 	}
 	return &dbConfig
 }

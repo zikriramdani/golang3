@@ -1,4 +1,4 @@
-# Aplikasi Sederhana Node Js Post Article
+# CRUD Article By Golang
 
 This project was generated with [`Golang`] version go1.16.6 darwin/amd64.
 
@@ -25,4 +25,10 @@ Run `go run main.go` for a dev server. Navigate to `http://localhost:8080/`. The
 - localhost:8080/api/v1/articleList/:id ===> readArticle ByID,
 - localhost:8080/api/v1/article/:id ===> updateArticle ByID,
 - localhost:8080/api/v1/article/:id ===> deleteArticle ByID
+<<<<<<< HEAD
 - localhost:8080/api/v1/articleList?limit=2&page=1 ===> filterLimitArticle;
+=======
+- localhost:8080/api/v1/articleList?limits=2&page=1 ===> paginationArticle;
+
+Document Postman : `https://documenter.getpostman.com/view/8820668/UVXdMyCy`
+>>>>>>> df8ac274b0c007057ce929e1087388ace8aa4c26

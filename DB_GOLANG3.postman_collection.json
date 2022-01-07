@@ -1,18 +1,18 @@
 {
 	"info": {
-		"_postman_id": "9ffaba34-f716-4bbe-a47c-69906e4a32bc",
+		"_postman_id": "1a220ed0-56f7-46d2-ac91-9e3321018144",
 		"name": "DB_GOLANG3",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "http://localhost:8080/api/v1/article/add",
+			"name": "Create Article",
 			"request": {
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"id\": 3,\n    \"title\": \"Nama Title\",\n    \"content\": \"Isi Content\",\n    \"category\": \"golang\",\n    \"status\": \"Draft\"\n}"
+					"raw": "{\n    \"title\": \"Nama Title\",\n    \"content\": \"Isi Content\",\n    \"category\": \"golang\",\n    \"status\": \"Draft\"\n}"
 				},
 				"url": {
 					"raw": "http://localhost:8080/api/v1/article/add",
@@ -32,9 +32,12 @@
 			"response": []
 		},
 		{
-			"name": "http://localhost:8080/api/v1/articleList",
+			"name": "Read All Article",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
 			"request": {
-				"method": "POST",
+				"method": "GET",
 				"header": [],
 				"body": {
 					"mode": "raw",
@@ -57,7 +60,7 @@
 			"response": []
 		},
 		{
-			"name": "http://localhost:8080/api/v1/articleList/{id}",
+			"name": "Read By Pagination Article",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -69,7 +72,44 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://localhost:8080/api/v1/articleList/1",
+					"raw": "localhost:8080/api/v1/articleList?limits=2&page=1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"articleList"
+					],
+					"query": [
+						{
+							"key": "limits",
+							"value": "2"
+						},
+						{
+							"key": "page",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Read By ID Article",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/articleList/6",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -79,14 +119,14 @@
 						"api",
 						"v1",
 						"articleList",
-						"1"
+						"6"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "http://localhost:8080/api/v1/article/{id}",
+			"name": "Update By ID Article",
 			"request": {
 				"method": "PUT",
 				"header": [],
@@ -112,7 +152,7 @@
 			"response": []
 		},
 		{
-			"name": "http://localhost:8080/api/v1/article/{id}",
+			"name": "Delete By ID Article",
 			"request": {
 				"method": "DELETE",
 				"header": [],
